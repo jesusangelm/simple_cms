@@ -1,5 +1,7 @@
 class Subject < ActiveRecord::Base
 
+  has_many :pages
+
   #named scopes
   scope :visible, lambda { where(:visible => true)  }
   scope :invisible, lambda { where(:visible => false)  }
