@@ -5,6 +5,14 @@ class Section < ActiveRecord::Base
   has_many :editors, :through => :section_edits,
            :class_name => "AdminUser"
 
+  CONTENT_TYPE = ["text", "HTML"]
+
+  validates :name, presence: true,
+                   length: { maximum: 255 }
+  validates :content_type, in: CONTENT_TYPE,
+                           message: "must be one of: #{CONTENT_TYPE.join(", ")}"
+  validates :content, presence: true
+
   scope :visible, lambda { where(:visible => true) }
   scope :invisible, lambda { where(:visible => false) }
   scope :sorted, lambda { order("sections.position ASC") }
