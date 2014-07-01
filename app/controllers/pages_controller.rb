@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
 
+  before_action :confirm_logged_in
+
   layout "admin"
 
   def index
@@ -22,8 +24,8 @@ class PagesController < ApplicationController
       flash[:notice] = "Page created successfully."
       redirect_to(:action => 'index')
     else
-    @subjects = Subject.order("position ASC")
-    @page_count = Page.count + 1 
+      @subjects = Subject.order("position ASC")
+      @page_count = Page.count + 1 
       render('new')
     end
   end
