@@ -24,6 +24,14 @@ class AdminUser < ActiveRecord::Base
   validate :username_is_allowed
   validate :no_new_users_on_saturday, on: :create
 
+  scope :sorted, lambda { order("last_name ASC, first_name ASC")  }
+
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+  private
+
   def username_is_allowed
     if FORBIDDEN_USERNAMES.include?(username)
       errors.add(:usename, "has been banned from use.")
