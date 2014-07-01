@@ -2,11 +2,13 @@ class AdminUser < ActiveRecord::Base
   #para configurar un nombre de tabla distinto
   # self.table_name = "admin_users
 
+  has_secure_password
+
   has_and_belongs_to_many :pages
   has_many :section_edits
   has_many :sections, :through => :section_edits
 
-  EMAIL_REGEX = /\A[a-z0-9._%+-]+@[a=z0-9.-]+\.[a-z]{2,4}\Z/i
+  EMAIL_REGEX = /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}\Z/i
   FORBIDDEN_USERNAMES = ["psuv", "revolucion", "chavez", "maduro"]
 
   validates :first_name, :presence => true,
