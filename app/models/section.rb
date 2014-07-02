@@ -9,8 +9,8 @@ class Section < ActiveRecord::Base
 
   validates :name, presence: true,
                    length: { maximum: 255 }
-  validates :content_type, in: CONTENT_TYPE,
-                           message: "must be one of: #{CONTENT_TYPE.join(", ")}"
+  #validates :content_type, in: CONTENT_TYPE,
+  #                         message: "must be one of: #{CONTENT_TYPE.join(", ")}"
   validates :content, presence: true
 
   scope :visible, lambda { where(:visible => true) }
