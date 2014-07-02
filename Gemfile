@@ -22,6 +22,8 @@ group :development do
   gem "thin", "1.6.2"
 end
 
+gem 'acts_as_list', '~> 0.4.0'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
